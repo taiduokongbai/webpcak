@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({minimize: true});   //代码压缩  一般用于生产环境
 module.exports = {
     /* "__dirname"是node.js中的一个全局变量，它指向当前执行脚本所在的目录 */
     devtool: 'eval-source-map',    //'null' 能大大压缩我们的打包代码
@@ -56,6 +56,9 @@ module.exports = {
                     }, {
                         loader: "postcss-loader"
                 }]
+            }, {
+                test: /.(jpg|png|gif|svg)$/, 
+                use: ['url-loader?name=img/[hash:8].[name].[ext]&limit=8192&outputPath=/']    /*解析图片*/
             }
         ]
     },

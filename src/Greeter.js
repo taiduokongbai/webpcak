@@ -14,7 +14,6 @@ class Greeter extends Component{
         return (
             <div className={styles.root}>
                 {text.greeterText}
-                <span>为了测试git命令</span>
             </div>
         )
     }
