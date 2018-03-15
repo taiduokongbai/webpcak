@@ -1,0 +1,58 @@
+
+npm init
+
+npm install webpack -g
+
+npm install webpack --save-dev
+
+此时运行命令webpack 会报错 Class extends value undefined is not a constructor or null
+
+npm install webpack-cli -g
+
+package.json 的scripts中 需要添加："prod": "webpack --mode production",
+                         "dev": "webpack --mode development",
+                         "build": "webpack"
+                         每次运行webpack时  从prod 或dev的模式中选择一种
+                1. 直接运行 npm run build 相当于直接运行webpack 
+                    The CLI moved into a separate package: webpack-cli.
+                    Please install 'webpack-cli' in addition to webpack itself to use the CLI.
+                    -> When using npm: npm install webpack-cli -D
+                    -> When using yarn: yarn add webpack-cli -D
+                执行npm install webpack-cli -D
+                2. 再次执行 npm run build 报错如下：需要你选择一种模式
+                    WARNING in configuration
+                    The 'mode' option has not been set. Set 'mode' option to 'development' or 'production' to enable defaults for this environment.
+                3. 零配置的情况下 如果没有src 文件夹 会报错  所以建议自己建立一个src文件夹
+                    ERROR in Entry module not found: Error: Can't resolve './src' in 'E:\1_myDoc\webpackTestPro'
+                4. 执行 npm run dev  运行结果如下：
+                    > mywebpacktest@1.0.0 dev E:\1_myDoc\webpackTestPro
+                    > webpack --mode development
+                    Hash: 04aad002fb401e5b83e1
+                    Version: webpack 4.1.1
+                    Time: 84ms
+                    Built at: 2018-3-12 13:57:03
+                    Asset      Size  Chunks             Chunk Names
+                    main.js  2.98 KiB    main  [emitted]  main
+                    Entrypoint main = main.js
+                    [./src/index.js] 162 bytes {main} [built]
+
+webpack 默认编译js 文件  其他文件需要手动配置
+
+json文件不支持注释  package.json
+
+添加一份儿 webpack.config.js 文件 写一些基本的配置  直接运行webpack 就可以了
+
+安装 dev-server   在scripts里进行相应的命令配置
+
+由于webpack3.*/webpack2.*已经内置可处理JSON文件，这里我们无需再添加webpack1.*需要的json-loader。
+
+Babel的安装与配置: Babel其实是几个模块化的包，其核心功能位于称为babel-core的npm包中，webpack可以把其不同的包整合在一起使用，对于每一个你需要的功能或拓展，你都需要安装单独的包（用得最多的是解析Es6的babel-env-preset包和解析JSX的babel-preset-react包）。
+
+webpack配置文件默认命名为webpack.config.js， 我们能不能命名成其它的名称，如wepback.config.client.js， 这是可以的，但要使用一个命令行参数 --config指定我们使用的配置文件，否则webpack找不到配置文件。
+ // rimraf dist 命令可以删除dist 文件夹。   "rimraf dist && webpack"  可以先删除dist文件夹在打包重新生成
+可以将npm scripts build 命令进行如下修改： "rimraf dist && webpack --config webpack.config.client.js", 执行npm run build
+
+webpack-dev-server 是 webpack自带的一个小型服务器，我们可以用服务器的方式访问html页面，每当有文件改动时，浏览器会自动刷新页面来反映我们做出的更改，这也就是所谓的liveload 或hotload. 首先 npm install webpack-dev-server --save-dev 安装它，
+启动webpack-dev-server 时，它也会进行打包，只不过它是把打包成功后的文件放到内存中，而不是放到硬盘中，
+
+
