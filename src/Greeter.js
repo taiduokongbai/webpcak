@@ -12,7 +12,10 @@ import styles from "./Greeter.css";
 class Greeter extends Component{
     render(){
         return (
-            <div className={styles.root}>{text.greeterText}</div>
+            <div className={styles.root}>
+                {text.greeterText}
+                <span>为了测试git命令</span>
+            </div>
         )
     }
 }
