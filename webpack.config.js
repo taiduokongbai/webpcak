@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({minimize: true});   //代码压缩  一般用于生产环境
+const uglify = require('uglifyjs-webpack-plugin');  // uglifyJs only supports ES5
+// const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({minimize: true});   //代码压缩  一般用于生产环境
+
 module.exports = {
     /* "__dirname"是node.js中的一个全局变量，它指向当前执行脚本所在的目录 */
     devtool: 'eval-source-map',    //'null' 能大大压缩我们的打包代码
@@ -28,7 +30,7 @@ module.exports = {
                     loader: "babel-loader",   // webpack1 的时候可以写 loader: "babel"，2.0的版本开始，必须写 "babel-loader"
                     options: {   // webpack1 的时候可以写 query
                         presets: [
-                            "env", "react"
+                            "env", "react", "es2015"
                         ]
                     }
                 },
