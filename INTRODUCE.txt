@@ -63,5 +63,13 @@ webpack-dev-server 是 webpack自带的一个小型服务器，我们可以用�
  git remote add origin 项目地址
  git push -u origin master
 
- 
+ 当修改了文件
+ git status
+ git stash
+ git pull
+ git stash pop
+ git add .
+ git commit -am "提交文件注释"
+ git pull
+ git push -u origin 远端分支名称
 
