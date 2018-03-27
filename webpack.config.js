@@ -14,7 +14,7 @@ module.exports = {
         filename: "bundle.js"//打包后输出文件的文件名
     },
     /* 驼峰命名法 */
-    devServer: {     
+    devServer: {
         contentBase: './dist', //默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录
         historyApiFallback: true,  // 如果设置为true，所有的跳转将指向index.html
         inline: true, // 设置为true，当源文件改变时会自动刷新页面
@@ -30,9 +30,9 @@ module.exports = {
                     loader: "babel-loader",   // webpack1 的时候可以写 loader: "babel"，2.0的版本开始，必须写 "babel-loader"
                     options: {   // webpack1 的时候可以写 query
                         presets: [
-                            "env", "react", "es2015"
-                        ]
-                    }
+                            "env", "react", "es2015",
+                        ],
+                    },
                 },
                 exclude: /node_modules/
                 // type: "javascript/auto",    
@@ -44,34 +44,39 @@ module.exports = {
                     json : JSON数据，可以通过require和import导入（.json文件默认）。
                     webassembly/experimental : WebAssembly模式（目前处于实验性阶段，.wasm文件默认）。
                  */
-                
-            },{
+
+            }, {
                 test: /(\.css$)/,
                 use: [{
-                        loader: "style-loader"
-                    }, {
-                        loader: "css-loader",
-                        options: {
-                            modules: true, // 指定启用css modules
-                            minimize: true
-                            //localIdentName: '[name]__[local]--[hash:base64:5]' // 指定css类名格式 class="Greeter__root--hHjmq"  如果不使用这句话 在F12中class名正常显示
-                        }
-                    }, {
-                        loader: "postcss-loader"
+                    loader: "style-loader"
+                }, {
+                    loader: "css-loader",
+                    options: {
+                        modules: true, // 指定启用css modules
+                        minimize: true
+                        //localIdentName: '[name]__[local]--[hash:base64:5]' // 指定css类名格式 class="Greeter__root--hHjmq"  如果不使用这句话 在F12中class名正常显示
+                    }
+                }, {
+                    loader: "postcss-loader",
+                    // plugins: () => [
+                    //     require("autoprefixer")({
+                    //         browsers: ['last 2 versions', 'ie >= 9']
+                    //     })
+                    // ]
                 }]
             }, {
-                test: /.(jpg|png|gif|svg)$/, 
+                test: /.(jpg|png|gif|svg)$/,
                 use: ['url-loader?name=img/[hash:8].[name].[ext]&limit=8192&outputPath=/']    /*解析图片*/
             }
         ]
     },
     plugins: [
-       new webpack.BannerPlugin('版权所有，翻版必究!'),
-       new HtmlWebpackPlugin({
-           template: __dirname + '/src/index.template.html'  //new 一个这个插件的实例，并传入相关的参数
-       }),
-       new webpack.HotModuleReplacementPlugin(), //热加载插件，
-       new uglify()
-    //    new ExtractTextPlugin("index.css")
+        new webpack.BannerPlugin('版权所有，翻版必究!'),
+        new HtmlWebpackPlugin({
+            template: __dirname + '/src/index.template.html'  //new 一个这个插件的实例，并传入相关的参数
+        }),
+        new webpack.HotModuleReplacementPlugin(), //热加载插件，
+        new uglify()
+        //    new ExtractTextPlugin("index.css")
     ]
 }
