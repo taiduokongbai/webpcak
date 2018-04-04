@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import text from "./data.json";
-import styles from "./Greeter.css";
 import { Menu, Dropdown, Icon } from 'antd';
 
 class Greeter extends Component {
@@ -19,7 +18,7 @@ class Greeter extends Component {
             </Menu>
         );
         return (
-            <div className={styles.root}>
+            <div className="root">
                 <div>
                     <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">

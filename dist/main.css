@@ -1,0 +1,25 @@
+/*! 版权所有，翻版必究! */
+/*  -- Greeter.css --  */
+.root {
+  margin-top: 35%;
+  color: #fff;
+  font-size: 20px;
+  text-align: center; }
+/* main.css */
+html {
+  box-sizing: border-box;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  margin: 0 auto;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 50%;
+  /* background: url('./img/banner2.jpg'); */ }
+
+h1, h2, h3, h4, h5, h6, p, ul, li, a, span, dl, dd, dt, img, ol {
+  margin: 0;
+  padding: 0; }

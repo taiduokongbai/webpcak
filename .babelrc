@@ -1,6 +1,4 @@
-// .babelrc
-{
-    //"presets": ["react", "env"],   // 如果在webpack.config.js里面配置过 就不需要在babel里面重新配置  
+{  
     "env": {
         "development": {
             "plugins": [
